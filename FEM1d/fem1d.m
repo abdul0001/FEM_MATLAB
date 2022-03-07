@@ -1,13 +1,13 @@
 %%%%%%%%%%%%%%% FEM Code %%%%%%%%%%%%%%%%%%%%%%%
 %%              -u"=f  in (0,1)
-%%             u(0)=0; u(1)=0;
+%%             u(0)=u(1)=0;
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 clear all 
 N=100; % Mesh points
 x=linspace(0,1,N+1);
 h=1/N; 
-for i=1:N,
+for i=1:N
     Elem(i,:)=[i i+1];
 end
 Db=[1,N+1];
@@ -21,8 +21,8 @@ fullnodes=[1:(N+1)];
 freenodes=setdiff(fullnodes,Db);
 uh=zeros(N+1,1);
 uh(freenodes)=A(freenodes,freenodes)\L(freenodes,1);
-for j=1:(N+1)
-    u(j,1)=ue(x(j));
+for i=1:(N+1)
+    u(i,1)=ue(x(i));
 end
 plot(x,uh,'b+',x,u,'r')
 
